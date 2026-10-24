@@ -1,0 +1,1236 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generative AI: What Would You Do?</title>
+
+  <style>
+    :root {
+      --green: #2B6959;
+      --light-green: #0F8165;
+      --gold: #EDB731;
+      --text: #24312D;
+      --border: #CBD7D2;
+      --neutral: #F6F8F7;
+      --correct: #176B43;
+      --incorrect: #B42330;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #FFFFFF;
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1250px;
+      margin: 0 auto;
+      padding: 28px 22px 60px;
+    }
+
+    header {
+      text-align: center;
+      border-bottom: 3px solid var(--gold);
+      padding-bottom: 22px;
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--green);
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.25;
+      margin: 0 0 10px;
+    }
+
+    h2 {
+      color: var(--green);
+      font-size: 23px;
+      line-height: 1.4;
+      margin: 0 0 10px;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Directions panel */
+
+    .instructions {
+      background: var(--neutral);
+      border-left: 6px solid var(--gold);
+      border-right: 6px solid var(--gold);
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+    }
+
+    .instructions h2 {
+      font-size: 23px;
+      margin-bottom: 12px;
+    }
+
+    .instructions p {
+      font-size: 18px;
+      line-height: 1.65;
+      margin: 10px 0;
+    }
+
+    .instructions p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Gold divider below directions */
+
+    .activity-divider {
+      width: 100%;
+      height: 3px;
+      background: var(--gold);
+      border: none;
+      margin: 0 0 20px;
+    }
+
+    /* Progress and restart controls */
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: nowrap;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .progress {
+      font-weight: bold;
+      color: var(--green);
+      font-size: 19px;
+    }
+
+    button {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 16px;
+      line-height: 1.4;
+      cursor: pointer;
+    }
+
+    .restart {
+      background: var(--green);
+      color: white;
+      border: 2px solid var(--green);
+      border-radius: 6px;
+      padding: 12px 24px;
+      font-weight: bold;
+      min-height: 48px;
+    }
+
+    .restart:hover {
+      background: var(--light-green);
+    }
+
+    button:focus-visible,
+    .scenario:focus-visible {
+      outline: 4px solid var(--gold);
+      outline-offset: 3px;
+    }
+
+    /* Three sorting categories */
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      align-items: start;
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+
+    .category {
+      min-width: 0;
+      min-height: 0;
+      height: auto;
+      background: white;
+      border: 3px solid var(--green);
+      border-radius: 9px;
+      overflow: visible;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .category-heading {
+      background: var(--green);
+      padding: 16px;
+      text-align: center;
+      border-bottom: 5px solid var(--gold);
+      border-radius: 6px 6px 0 0;
+    }
+
+    .category-heading h2 {
+      color: white;
+      font-size: 20px;
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    .category-description {
+      padding: 16px 16px 0;
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .dropzone {
+      min-height: 245px;
+      height: auto;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 14px;
+      border-radius: 5px;
+    }
+
+    .dropzone.drag-over {
+      background: #E5F3ED;
+      outline: 3px dashed var(--light-green);
+      outline-offset: -5px;
+    }
+
+    .dropzone.selected-target {
+      background: #FFF8DF;
+      outline: 3px dashed #9C7300;
+      outline-offset: -5px;
+    }
+
+    .place-button {
+      width: calc(100% - 28px);
+      margin: 0 14px 14px;
+      padding: 12px 10px;
+      color: var(--green);
+      border: 2px solid var(--green);
+      border-radius: 6px;
+      background: white;
+      font-size: 16px;
+      font-weight: bold;
+      min-height: 48px;
+    }
+
+    .place-button:hover:not(:disabled) {
+      background: #E9F3EF;
+    }
+
+    .place-button:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    /* Starting area */
+
+    .bank-section {
+      border: 3px solid var(--green);
+      border-radius: 9px;
+      background: white;
+      padding: 22px;
+    }
+
+    .bank-section h2 {
+      border-bottom: 3px solid var(--gold);
+      padding-bottom: 10px;
+    }
+
+    .bank-description {
+      font-size: 18px;
+      line-height: 1.6;
+      margin: 0 0 16px;
+    }
+
+    .scenario-bank {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      align-items: start;
+      gap: 14px;
+      min-height: 120px;
+      height: auto;
+      padding: 10px;
+      border-radius: 6px;
+    }
+
+    .scenario-bank.drag-over {
+      background: #FFF8DF;
+      outline: 3px dashed #9C7300;
+    }
+
+    /* Individual scenario cards */
+
+    .scenario {
+      min-width: 0;
+      width: 100%;
+      height: auto;
+      position: relative;
+      background: white;
+      border: 2px solid var(--border);
+      border-radius: 7px;
+      padding: 16px;
+      cursor: grab;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      overflow-wrap: anywhere;
+      white-space: normal;
+      font-size: 18px;
+      line-height: 1.6;
+      user-select: none;
+    }
+
+    .scenario:hover {
+      border-color: var(--light-green);
+    }
+
+    .scenario:active {
+      cursor: grabbing;
+    }
+
+    .scenario.selected {
+      border: 3px solid #9C7300;
+      background: #FFF8DF;
+    }
+
+    .scenario.correct {
+      border-color: var(--correct);
+      background: #EAF6EF;
+    }
+
+    .scenario.incorrect {
+      border-color: var(--incorrect);
+      background: #FFF0F1;
+    }
+
+    .scenario.selected.correct {
+      outline: 3px solid var(--gold);
+      outline-offset: 2px;
+    }
+
+    .scenario.selected.incorrect {
+      outline: 3px solid var(--gold);
+      outline-offset: 2px;
+    }
+
+    .scenario-text {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .feedback {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+      font-size: 17px;
+      line-height: 1.5;
+    }
+
+    .feedback:empty {
+      display: none;
+    }
+
+    .correct .feedback {
+      color: var(--correct);
+    }
+
+    .incorrect .feedback {
+      color: var(--incorrect);
+    }
+
+    .scenario[aria-pressed="true"] {
+      outline: 3px solid var(--gold);
+      outline-offset: 3px;
+    }
+
+    /* Status and completion */
+
+    .status {
+      min-height: 30px;
+      font-size: 18px;
+      line-height: 1.6;
+      font-weight: bold;
+      margin: 18px 0 0;
+      color: var(--green);
+    }
+
+    .completion {
+      text-align: center;
+      background: #EAF6EF;
+      border: 3px solid var(--correct);
+      border-radius: 9px;
+      padding: 24px;
+      margin-top: 24px;
+    }
+
+    .completion h2 {
+      margin-bottom: 10px;
+    }
+
+    .completion p {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Tablet layout */
+
+    @media (max-width: 950px) {
+      .category-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .scenario-bank {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .dropzone {
+        min-height: 180px;
+      }
+    }
+
+    /* Phone layout */
+
+    @media (max-width: 650px) {
+      .container {
+        padding: 18px 14px 40px;
+      }
+
+      .category-grid,
+      .scenario-bank {
+        grid-template-columns: 1fr;
+      }
+
+      .category-grid {
+        gap: 20px;
+      }
+
+      .dropzone {
+        min-height: 135px;
+      }
+
+      .toolbar {
+        gap: 10px;
+      }
+
+      .restart {
+        padding: 10px 14px;
+        flex-shrink: 0;
+      }
+
+      .progress {
+        font-size: 17px;
+      }
+
+      .bank-section {
+        padding: 16px;
+      }
+
+      .instructions {
+        padding: 18px;
+      }
+
+      .category-description {
+        padding: 14px 14px 0;
+      }
+    }
+
+    /* Reduced motion accessibility */
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+
+    <header>
+      <h1>Generative AI: What Would You Do?</h1>
+      <p class="subtitle">
+        Explore responsible choices when using generative AI
+        in college coursework.
+      </p>
+    </header>
+
+    <!-- Directions -->
+
+    <section
+      class="instructions"
+      aria-labelledby="instructions-title"
+    >
+      <h2 id="instructions-title">Directions</h2>
+
+      <p>
+        Drag each scenario into the appropriate category.
+        Correct placements turn green; incorrect placements
+        turn red.
+      </p>
+
+      <p>
+        To change an answer, move the scenario directly to
+        another category or back to the starting area.
+      </p>
+
+      <p>
+        <strong>
+          You can also click a scenario to select it, then
+          click a category's Place Here button. Keyboard users
+          can press Tab to navigate and Enter or Space to select
+          and place scenarios.
+        </strong>
+      </p>
+    </section>
+
+    <!-- Gold divider between directions and activity -->
+
+    <hr class="activity-divider" aria-hidden="true">
+
+    <!-- Progress and restart -->
+
+    <div class="toolbar">
+      <div
+        class="progress"
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        Correctly placed:
+        <span id="correct-count">0</span> of 9
+      </div>
+
+      <button
+        class="restart"
+        id="restart-button"
+        type="button"
+      >
+        Restart Activity
+      </button>
+    </div>
+
+    <!-- Category areas -->
+
+    <section aria-label="Sorting categories">
+      <div class="category-grid">
+
+        <!-- Appropriate AI Use -->
+
+        <div class="category">
+          <div class="category-heading">
+            <h2 id="appropriate-heading">
+              Appropriate AI Use
+            </h2>
+          </div>
+
+          <p class="category-description">
+            AI use that supports learning and follows
+            your instructor's expectations.
+          </p>
+
+          <div
+            class="dropzone"
+            id="appropriate"
+            data-category="appropriate"
+            role="group"
+            aria-labelledby="appropriate-heading"
+          ></div>
+
+          <button
+            class="place-button"
+            type="button"
+            data-place="appropriate"
+            aria-label="Place selected scenario in Appropriate AI Use"
+            disabled
+          >
+            Place Here
+          </button>
+        </div>
+
+        <!-- Verify Before Using -->
+
+        <div class="category">
+          <div class="category-heading">
+            <h2 id="verify-heading">
+              Verify Before Using
+            </h2>
+          </div>
+
+          <p class="category-description">
+            AI output that needs independent checking
+            before you rely on it.
+          </p>
+
+          <div
+            class="dropzone"
+            id="verify"
+            data-category="verify"
+            role="group"
+            aria-labelledby="verify-heading"
+          ></div>
+
+          <button
+            class="place-button"
+            type="button"
+            data-place="verify"
+            aria-label="Place selected scenario in Verify Before Using"
+            disabled
+          >
+            Place Here
+          </button>
+        </div>
+
+        <!-- Inappropriate AI Use -->
+
+        <div class="category">
+          <div class="category-heading">
+            <h2 id="inappropriate-heading">
+              Inappropriate AI Use
+            </h2>
+          </div>
+
+          <p class="category-description">
+            Actions that violate academic integrity,
+            privacy, or course expectations.
+          </p>
+
+          <div
+            class="dropzone"
+            id="inappropriate"
+            data-category="inappropriate"
+            role="group"
+            aria-labelledby="inappropriate-heading"
+          ></div>
+
+          <button
+            class="place-button"
+            type="button"
+            data-place="inappropriate"
+            aria-label="Place selected scenario in Inappropriate AI Use"
+            disabled
+          >
+            Place Here
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Starting scenario bank -->
+
+    <section
+      class="bank-section"
+      aria-labelledby="bank-heading"
+    >
+      <h2 id="bank-heading">Scenarios to Sort</h2>
+
+      <p class="bank-description">
+        Select or drag a scenario from this area.
+        You can return scenarios here to reconsider your choices.
+      </p>
+
+      <div
+        class="scenario-bank"
+        id="scenario-bank"
+        role="group"
+        aria-labelledby="bank-heading"
+      ></div>
+
+      <button
+        class="place-button"
+        type="button"
+        id="return-button"
+        disabled
+      >
+        Return Selected Scenario Here
+      </button>
+    </section>
+
+    <!-- Screen reader and visual feedback -->
+
+    <p
+      class="status"
+      id="status"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+    ></p>
+
+    <!-- Completion message -->
+
+    <section
+      class="completion hidden"
+      id="completion"
+      aria-labelledby="completion-heading"
+      tabindex="-1"
+    >
+      <h2 id="completion-heading">
+        Activity Complete!
+      </h2>
+
+      <p>
+        Congratulations! You correctly sorted all nine
+        scenarios. You have demonstrated your understanding
+        of appropriate, inappropriate, and verifiable AI use.
+      </p>
+    </section>
+
+  </main>
+
+  <script>
+    "use strict";
+
+    // The nine scenarios and their correct categories.
+
+    const scenarios = [
+      {
+        id: "s1",
+        text: "Ask AI to explain a difficult concept when your instructor permits this use.",
+        answer: "appropriate"
+      },
+      {
+        id: "s2",
+        text: "Ask AI to quiz you on your notes without sharing private information.",
+        answer: "appropriate"
+      },
+      {
+        id: "s3",
+        text: "Use AI to suggest search keywords when your instructor allows it.",
+        answer: "appropriate"
+      },
+      {
+        id: "s4",
+        text: "Check whether an AI-generated quotation matches the original source.",
+        answer: "verify"
+      },
+      {
+        id: "s5",
+        text: "Verify an AI explanation of a recent event against reliable reporting.",
+        answer: "verify"
+      },
+      {
+        id: "s6",
+        text: "Check an AI-generated calculation by working through the steps yourself.",
+        answer: "verify"
+      },
+      {
+        id: "s7",
+        text: "Invent a citation to support a claim in your paper.",
+        answer: "inappropriate"
+      },
+      {
+        id: "s8",
+        text: "Use AI to answer a test that explicitly prohibits AI assistance.",
+        answer: "inappropriate"
+      },
+      {
+        id: "s9",
+        text: "Upload a classmate's unpublished paper to an AI tool without permission.",
+        answer: "inappropriate"
+      }
+    ];
+
+    // Human-readable category names.
+
+    const categoryNames = {
+      appropriate: "Appropriate AI Use",
+      verify: "Verify Before Using",
+      inappropriate: "Inappropriate AI Use",
+      bank: "Scenarios to Sort"
+    };
+
+    // Page elements.
+
+    const bank = document.getElementById("scenario-bank");
+
+    const countDisplay =
+      document.getElementById("correct-count");
+
+    const status =
+      document.getElementById("status");
+
+    const completion =
+      document.getElementById("completion");
+
+    const restartButton =
+      document.getElementById("restart-button");
+
+    const returnButton =
+      document.getElementById("return-button");
+
+    const placeButtons =
+      document.querySelectorAll("[data-place]");
+
+    const dropzones =
+      document.querySelectorAll(".dropzone");
+
+    // Activity state.
+
+    let selectedId = null;
+    let draggedId = null;
+    let locations = {};
+
+    // Shuffle the scenarios using Fisher-Yates.
+
+    function shuffle(items) {
+      const shuffled = [...items];
+
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+
+        [shuffled[i], shuffled[j]] =
+          [shuffled[j], shuffled[i]];
+      }
+
+      return shuffled;
+    }
+
+    // Find a scenario using its ID.
+
+    function getScenario(id) {
+      return scenarios.find(item => item.id === id);
+    }
+
+    // Find a scenario card on the page.
+
+    function getCard(id) {
+      return document.getElementById(id);
+    }
+
+    // Announce activity updates.
+
+    function announce(message) {
+      status.textContent = message;
+    }
+
+    // Update buttons and selected-card highlighting.
+
+    function updateControls() {
+      placeButtons.forEach(button => {
+        button.disabled = selectedId === null;
+      });
+
+      returnButton.disabled = selectedId === null;
+
+      document.querySelectorAll(".scenario").forEach(card => {
+        const isSelected = card.id === selectedId;
+
+        card.classList.toggle("selected", isSelected);
+
+        card.setAttribute(
+          "aria-pressed",
+          String(isSelected)
+        );
+      });
+
+      document.querySelectorAll(".dropzone").forEach(zone => {
+        zone.classList.toggle(
+          "selected-target",
+          selectedId !== null
+        );
+      });
+    }
+
+    // Select or deselect a scenario.
+
+    function selectScenario(id) {
+      if (selectedId === id) {
+        selectedId = null;
+
+        announce("Scenario selection cleared.");
+      } else {
+        selectedId = id;
+
+        announce(
+          "Selected: " +
+          getScenario(id).text +
+          " Choose a Place Here button or return the scenario."
+        );
+      }
+
+      updateControls();
+    }
+
+    // Show feedback based on the scenario's location.
+
+    function updateCardFeedback(card, location) {
+      card.classList.remove("correct", "incorrect");
+
+      const feedback = card.querySelector(".feedback");
+
+      feedback.textContent = "";
+
+      const scenario = getScenario(card.id);
+
+      if (location === "bank") {
+        card.setAttribute(
+          "aria-label",
+          scenario.text +
+          ". In Scenarios to Sort. Select to move."
+        );
+
+        return;
+      }
+
+      const isCorrect = scenario.answer === location;
+
+      if (isCorrect) {
+        card.classList.add("correct");
+        feedback.textContent = "Correct";
+      } else {
+        card.classList.add("incorrect");
+        feedback.textContent = "Try again";
+      }
+
+      card.setAttribute(
+        "aria-label",
+        scenario.text +
+        ". In " +
+        categoryNames[location] +
+        ". " +
+        feedback.textContent +
+        ". Select to move."
+      );
+    }
+
+    // Count all scenarios currently in correct categories.
+
+    function updateProgress() {
+      const count = scenarios.filter(item => {
+        return locations[item.id] === item.answer;
+      }).length;
+
+      countDisplay.textContent = String(count);
+
+      if (count === scenarios.length) {
+        completion.classList.remove("hidden");
+      } else {
+        completion.classList.add("hidden");
+      }
+
+      return count;
+    }
+
+    // Move a scenario to any category or back to the bank.
+    // No category capacity limits are imposed.
+    // A scenario can move directly between categories.
+
+    function moveScenario(id, destination) {
+      if (!getScenario(id)) {
+        return;
+      }
+
+      const card = getCard(id);
+
+      const target = destination === "bank"
+        ? bank
+        : document.getElementById(destination);
+
+      if (!card || !target) {
+        return;
+      }
+
+      // Move the existing card without recreating it.
+
+      target.appendChild(card);
+
+      locations[id] = destination;
+
+      // Update its green or red feedback.
+
+      updateCardFeedback(card, destination);
+
+      // Clear the selected state.
+
+      selectedId = null;
+
+      updateControls();
+
+      // Update the score.
+
+      const count = updateProgress();
+
+      // Announce the result.
+
+      if (destination === "bank") {
+        announce(
+          "Scenario returned to the starting area."
+        );
+      } else {
+        const correct =
+          getScenario(id).answer === destination;
+
+        announce(
+          (correct ? "Correct. " : "Try again. ") +
+          getScenario(id).text +
+          " Placed in " +
+          categoryNames[destination] +
+          "."
+        );
+      }
+
+      // Completion announcement.
+
+      if (count === scenarios.length) {
+        announce(
+          "Activity complete! All nine scenarios are correctly placed."
+        );
+      }
+    }
+
+    // Create an accessible scenario card.
+
+    function createCard(scenario) {
+      const card = document.createElement("div");
+
+      card.id = scenario.id;
+      card.className = "scenario";
+      card.draggable = true;
+      card.tabIndex = 0;
+
+      card.setAttribute("role", "button");
+      card.setAttribute("aria-pressed", "false");
+
+      // Scenario text.
+
+      const text = document.createElement("p");
+
+      text.className = "scenario-text";
+      text.textContent = scenario.text;
+
+      // Feedback label.
+
+      const feedback = document.createElement("span");
+
+      feedback.className = "feedback";
+
+      card.appendChild(text);
+      card.appendChild(feedback);
+
+      // Mouse and touch click selection.
+
+      card.addEventListener("click", () => {
+        selectScenario(scenario.id);
+      });
+
+      // Keyboard selection using Enter or Space.
+
+      card.addEventListener("keydown", event => {
+        if (
+          event.key === "Enter" ||
+          event.key === " "
+        ) {
+          event.preventDefault();
+
+          selectScenario(scenario.id);
+        }
+      });
+
+      // Begin dragging a scenario.
+
+      card.addEventListener("dragstart", event => {
+        draggedId = scenario.id;
+
+        event.dataTransfer.effectAllowed = "move";
+
+        event.dataTransfer.setData(
+          "text/plain",
+          scenario.id
+        );
+      });
+
+      // Clean up after dragging ends.
+
+      card.addEventListener("dragend", () => {
+        draggedId = null;
+
+        clearDragHighlights();
+      });
+
+      // New cards begin in the scenario bank.
+
+      updateCardFeedback(card, "bank");
+
+      return card;
+    }
+
+    // Remove temporary drag highlights.
+
+    function clearDragHighlights() {
+      document.querySelectorAll(".drag-over").forEach(element => {
+        element.classList.remove("drag-over");
+      });
+    }
+
+    // Enable drag-and-drop on an area.
+
+    function enableDropTarget(element, destination) {
+      element.addEventListener("dragover", event => {
+        event.preventDefault();
+
+        event.dataTransfer.dropEffect = "move";
+
+        element.classList.add("drag-over");
+      });
+
+      element.addEventListener("dragleave", event => {
+        if (!element.contains(event.relatedTarget)) {
+          element.classList.remove("drag-over");
+        }
+      });
+
+      element.addEventListener("drop", event => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const id =
+          event.dataTransfer.getData("text/plain") ||
+          draggedId;
+
+        clearDragHighlights();
+
+        if (getScenario(id)) {
+          moveScenario(id, destination);
+        }
+
+        draggedId = null;
+      });
+    }
+
+    // Click-to-place buttons for all three categories.
+
+    placeButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        if (selectedId !== null) {
+          moveScenario(
+            selectedId,
+            button.dataset.place
+          );
+        }
+      });
+    });
+
+    // Return a selected card to the starting area.
+
+    returnButton.addEventListener("click", () => {
+      if (selectedId !== null) {
+        moveScenario(selectedId, "bank");
+      }
+    });
+
+    // Enable drag-and-drop for category boxes.
+
+    dropzones.forEach(zone => {
+      enableDropTarget(
+        zone,
+        zone.dataset.category
+      );
+    });
+
+    // Enable dragging a card back to the starting area.
+
+    enableDropTarget(bank, "bank");
+
+    // Allow clicking empty space in a category to place
+    // a selected scenario there.
+
+    dropzones.forEach(zone => {
+      zone.addEventListener("click", event => {
+        if (event.target.closest(".scenario")) {
+          return;
+        }
+
+        if (selectedId !== null) {
+          moveScenario(
+            selectedId,
+            zone.dataset.category
+          );
+        }
+      });
+    });
+
+    // Allow clicking empty space in the bank to return
+    // a selected scenario to the starting area.
+
+    bank.addEventListener("click", event => {
+      if (event.target.closest(".scenario")) {
+        return;
+      }
+
+      if (selectedId !== null) {
+        moveScenario(selectedId, "bank");
+      }
+    });
+
+    // Restart and reshuffle all nine scenarios.
+
+    function restartActivity() {
+      selectedId = null;
+      draggedId = null;
+      locations = {};
+
+      // Clear the starting area.
+
+      bank.replaceChildren();
+
+      // Clear all category boxes.
+
+      dropzones.forEach(zone => {
+        zone.replaceChildren();
+      });
+
+      // Shuffle and recreate scenario cards.
+
+      shuffle(scenarios).forEach(scenario => {
+        locations[scenario.id] = "bank";
+
+        bank.appendChild(
+          createCard(scenario)
+        );
+      });
+
+      // Reset visual states and score.
+
+      clearDragHighlights();
+      updateControls();
+      updateProgress();
+
+      announce(
+        "Activity restarted. Nine scenarios have been shuffled."
+      );
+    }
+
+    // Restart button.
+
+    restartButton.addEventListener(
+      "click",
+      restartActivity
+    );
+
+    // Start the activity automatically.
+
+    restartActivity();
+
+  </script>
+</body>
+</html>
