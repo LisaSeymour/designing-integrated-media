@@ -1,0 +1,414 @@
+
+/*
+Design by TEMPLATED
+http://templated.co
+Released for free under the Creative Commons Attribution License
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+body {
+	margin: 0;
+	padding: 0;
+	background: #F7F8F5;
+	
+font-family: 'Montserrat', sans-serif;
+font-size: 15px;
+
+	color: #333333;
+}
+
+h1, h2, h3 {
+	margin: 0;
+	padding: 0;
+	text-transform: uppercase;
+	font-weight: 300;
+	color: #2B6959;
+}
+
+h1 {
+	font-size: 2em;
+}
+
+h2 {
+	font-size: 2.8em;
+}
+
+h3 {
+	font-size: 1.6em;
+}
+
+p, ul, ol {
+	margin-top: 0;
+	line-height: 180%;
+}
+
+ul, ol {
+}
+
+a {
+	text-decoration: none;
+	color: #5BA689;
+}
+
+a:hover {
+}
+
+#wrapper {
+	overflow: hidden;
+	background: #F7F8F5;
+}
+
+.container {
+	width: 1200px;
+	margin: 0px auto;
+}
+
+/* Header */
+
+#header-wrapper {
+	overflow: hidden;
+	height: 600px;
+	background: #FFFFFF;
+}
+
+#header {
+	width: 960px;
+	height: 200px;
+	margin: 0 auto;
+	padding: 0px 20px;
+}
+
+
+/* Logo */
+
+#logo {
+    text-align: center;
+    height: auto;
+    padding: 25px 0;
+}
+
+.library-logo {
+    display: block;
+    width: 280px;
+    max-width: 90%;
+    height: auto;
+    margin: 0 auto 20px auto;
+}
+
+
+#logo h1 {
+    padding: 5px 0px 20px 0px;
+    letter-spacing: -1px;
+    text-transform: capitalize;
+    font-size: 80px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: normal;
+    color: #2B6959;
+}
+
+
+#logo p {
+    margin-top: -20px;
+    padding: 0px 0px 0px 5px;
+    font-size: 20px;
+    font-weight: 300;
+    color: #696969;
+    text-align: center;
+    
+font-family: Georgia, 'Times New Roman', serif;
+
+}
+
+#logo p a {
+    color: #696969;
+}
+
+#logo a {
+    border: none;
+    background: none;
+    text-decoration: none;
+    color: #3C342E;
+}
+
+
+/* Menu */
+
+#menu-wrapper {
+	overflow: hidden;
+	height: 52px;
+	margin-bottom: 2em;
+	background: #2B6959;
+}
+
+#menu {
+	overflow: hidden;
+	height: 52px;
+}
+
+#menu ul {
+	margin: 0;
+	padding: 0px 0px 0px 0px;
+	list-style: none;
+	line-height: normal;
+	text-align: center;
+}
+
+#menu li {
+	display: inline-block;
+}
+
+#menu a {
+	display: block;
+	padding: 0px 30px;
+	line-height: 52px;
+	border: none;
+	text-decoration: none;
+	text-align: center;
+	font-family: 'Oswald', sans-serif;
+	font-size: 14px;
+	font-weight: 300;
+	color: #FFFFFF;
+}
+
+#menu a:hover, #menu .current_page_item a {
+	background: #F5B719;
+	text-decoration: none;
+	color: #FFFFFF;
+}
+
+#menu .current_page_item a {
+}
+
+/* Page */
+#page {
+
+	overflow: hidden;
+	padding: 20px 20px 40px 20px;
+}
+
+/* Content */
+
+#content {
+	float: left;
+	width: 752px;
+	padding: 0px 0px 0px 0px;
+}
+
+
+/* Footer */
+
+#footer {
+	height: 100px;
+	margin: 0 auto;
+	padding: 50px 0px 0px 0px;
+}
+
+#footer p {
+	margin: 0;
+	padding-top: 10px;
+	line-height: normal;
+	text-align: center;
+	text-shadow: 1px 1px 0px #FFFFFF;
+	color: #909090;
+}
+
+#footer a {
+	text-decoration: underline;
+	color: #909090;
+}
+
+#footer a:hover {
+	text-decoration: none;
+	color: #383838;
+}
+
+.box1 {
+	overflow: hidden;
+	height: 300px;
+	background: url(images/img04.jpg) no-repeat center bottom;
+}
+
+
+/* Three Column Content */
+
+#three-column {
+	overflow: hidden;
+	padding: 10px 0px 50px 0px;
+}
+
+#three-column .tbox1 {
+	float: left;
+	width: 384px;
+	margin-right: 20px;
+}
+
+#three-column .tbox2 {
+	float: left;
+	width: 384px;
+}
+
+#three-column .tbox3 {
+	float: right;
+	width: 384px;
+}
+
+
+.box-style {
+    background: #FFFFFF;
+    text-align: center;
+    height: 420px;
+    display: flex;
+    flex-direction: column;
+}
+
+.box-style h2 {
+    padding: 10px 0px;
+    letter-spacing: -1px;
+    font-size: 22px;
+    color: #2B6959;
+}
+
+.box-style .content {
+    width: 324px;
+    padding: 30px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.box-style .content p {
+    flex: 1;
+}
+
+.button {
+    display: inline-block;
+    margin: 1em 0em;
+    background: #2B6959;
+    padding: 1em 2em;
+    color: #FFFFFF;
+}
+
+.button:hover {
+    background: #F5B719;
+    color: #2B6959;
+}
+
+.box-style .button {
+    margin-top: auto;
+}
+
+
+.profile-photo {
+    float: right;
+    width: 200px;
+    max-width: 35%;
+    height: auto;
+    margin: 0 0 20px 25px;
+    border: 3px solid #2B6959;
+    border-radius: 8px;
+}
+
+/* Image Editing Project Page */
+
+
+#image-projects {
+    padding: 0 0 60px;
+}
+
+
+#image-projects h2 {
+    margin-bottom: 20px;
+}
+
+#image-projects h3 {
+    margin: 25px 0 15px;
+    font-size: 22px;
+}
+
+.book-covers {
+    display: flex;
+    gap: 30px;
+    margin: 25px 0 50px;
+}
+
+.project-artwork {
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+}
+
+.project-artwork img {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+}
+
+.project-artwork p {
+    text-align: left;
+    margin-top: 15px;
+}
+
+.vector-project {
+    text-align: center;
+}
+
+#image-projects > h3 {
+    text-align: center;
+}
+
+.vector-project img {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+}
+
+.vector-project p {
+    margin-top: 15px;
+}
+
+@media (max-width: 700px) {
+    .book-covers {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+#image-projects {
+    margin-top: -50px;
+}
+
+/* Web Design Project Page */
+
+#web-projects {
+    padding: 0 0 60px;
+    margin-top: -50px;
+}
+
+#web-projects h2 {
+    margin-bottom: 25px;
+}
+
+.web-project {
+    background: #FFFFFF;
+    border: 2px solid #2B6959;
+    padding: 25px;
+    margin: 25px 0;
+}
+
+.web-project h3 {
+    color: #2B6959;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+
+/* Full-width white header */
+
+#logo {
+    background: #FFFFFF;
+    box-shadow: 0 0 0 100vmax #FFFFFF;
+    clip-path: inset(0 -100vmax);
+}
+
