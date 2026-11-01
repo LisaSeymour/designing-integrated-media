@@ -716,4 +716,47 @@ section {
         height: 125px;
     }
 }
+/* Back to Top button */
 
+.back-to-top {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background-color: #2B6959;
+    color: #FFFFFF;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 1.6rem;
+    font-weight: 700;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+    z-index: 1000;
+    transition: background-color 0.2s ease;
+}
+
+.back-to-top:hover {
+    background-color: #F5B719;
+    color: #2B6959;
+}
+
+.back-to-top:focus-visible {
+    outline: 3px solid #568DB8;
+    outline-offset: 3px;
+}
+
+/* Make Back to Top button wide enough for its label */
+
+.back-to-top {
+    width: auto;
+    min-width: 130px;
+    height: 44px;
+    padding: 0 18px;
+    border-radius: 24px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    gap: 6px;
+}
