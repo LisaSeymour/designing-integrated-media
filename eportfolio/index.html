@@ -200,15 +200,35 @@
           <span class="card-category">Multimedia</span>
         </article>
 
+        
         <article class="project-card">
           <div class="card-number">04</div>
           <div class="card-icon" aria-hidden="true">✳</div>
           <h3>Digital Animation</h3>
           <p>
-            Investigating how motion, timing, and visual
-            elements can support communication and make
-            learning more engaging.
+            I created an animation demonstrating phototropism,
+            the process by which plants grow toward light.
+            For this project, I explored how animation can
+            illustrate a scientific concept through movement
+            and visual storytelling.
           </p>
+
+          <a href="https://youtu.be/F1OTpsPE6Hk"
+             target="_blank" rel="noopener noreferrer"
+             class="project-preview-link">
+            <img src="phototropism.png"
+                 alt="Animation showing a plant growing toward a lamp"
+                 class="project-preview-image">
+          </a>
+
+          <div class="project-links">
+            <a href="https://youtu.be/F1OTpsPE6Hk"
+               target="_blank" rel="noopener noreferrer"
+               class="project-button">
+              View Phototropism Animation
+            </a>
+          </div>
+
           <span class="card-category">Motion Design</span>
         </article>
 
@@ -217,10 +237,36 @@
           <div class="card-icon" aria-hidden="true">▣</div>
           <h3>Screencasting</h3>
           <p>
-            Developing screen-based demonstrations and
-            tutorials to guide learners through digital
-            tools and research processes.
+            I created two instructional screencasts demonstrating
+            AI-powered library research tools. For the traditional
+            version, I used Camtasia to demonstrate EBSCO's AI
+            features. For the AI-assisted version, I used InVideo
+            and Google AI Studio to demonstrate Primo's AI
+            Research Assistant. Creating both versions allowed
+            me to compare traditional and AI-assisted approaches
+            to screencasting.
           </p>
+
+          <div class="project-links">
+            <a href="https://youtu.be/Oqzo3-3kQes"
+               target="_blank" rel="noopener noreferrer"
+               class="project-button">
+              View Traditional Screencast
+            </a>
+
+            <a href="https://youtu.be/P6d_p23tyeU"
+               target="_blank" rel="noopener noreferrer"
+               class="project-button">
+              View AI-Assisted Screencast
+            </a>
+
+            <button type="button"
+                    class="project-button"
+                    id="open-reflection">
+              View AI-Assisted Video Reflection
+            </button>
+          </div>
+
           <span class="card-category">Instructional Media</span>
         </article>
 
@@ -229,20 +275,28 @@
           <div class="card-icon" aria-hidden="true">◇</div>
           <h3>ePortfolio Design</h3>
           <p>
-           
-  This ePortfolio was created using ChatGPT to generate
-  the HTML and CSS. I also developed a traditional
-  version by modifying an existing template using
-  HTML and CSS in BBEdit.
-</p>
-          
-         <div class="project-links">
-  <a href="https://lisaseymour.github.io/designing-integrated-media/"
-     target="_blank" rel="noopener noreferrer"
-     class="project-button">
-    View Traditional ePortfolio
-  </a>
-</div>
+            This ePortfolio was created using ChatGPT to generate
+            the HTML and CSS. I also developed a traditional
+            version by modifying an existing template using
+            HTML and CSS in BBEdit.
+          </p>
+
+          <a href="https://lisaseymour.github.io/designing-integrated-media/"
+             target="_blank" rel="noopener noreferrer"
+             class="project-preview-link">
+            <img src="traditional_portfolio.png"
+                 alt="Screenshot of the traditional ePortfolio homepage"
+                 class="project-preview-image">
+          </a>
+
+          <div class="project-links">
+            <a href="https://lisaseymour.github.io/designing-integrated-media/"
+               target="_blank" rel="noopener noreferrer"
+               class="project-button">
+              View Traditional ePortfolio
+            </a>
+          </div>
+
           <span class="card-category">Web Development</span>
         </article>
 
@@ -358,6 +412,106 @@
 <a href="#home" class="back-to-top" aria-label="Back to top">
   Back to Top ↑
 </a>
+
+<!-- AI-Assisted Video Reflection Pop-up -->
+
+<dialog id="reflection-dialog"
+        class="reflection-dialog"
+        aria-labelledby="reflection-title">
+
+  <div class="reflection-content">
+
+    <button type="button"
+            class="reflection-close"
+            id="close-reflection"
+            aria-label="Close reflection">
+      &times;
+    </button>
+
+    <p class="section-label">Screencasting Project</p>
+    <h2 id="reflection-title">
+      AI-Assisted Video Reflection
+    </h2>
+    <div class="gold-rule"></div>
+
+    <p>
+      For this assignment, I used InVideo through its integration
+      with ChatGPT to create an instructional screencast
+      demonstrating Primo's AI Research Assistant. I recorded
+      the screencast myself and used AI to generate the narration
+      and add visual effects. The biggest advantage I found was
+      AI-generated narration. When recording my own narration,
+      I often make mistakes or stumble over words, which means
+      having to rerecord sections until I get them right.
+      Using Google AI Studio eliminated those problems and
+      allowed me to generate a professional-sounding voiceover
+      from my script. I also liked being able to connect ChatGPT
+      directly to InVideo and describe the changes I wanted
+      rather than having to learn another editing interface.
+      I can see how these features could be useful for educators
+      who want to create instructional videos but have limited
+      experience with video editing software.
+    </p>
+
+    <p>
+      However, creating the video was much more difficult than
+      I expected. The free version of InVideo limited my ability
+      to generate narration, so I had to use Google AI Studio
+      instead. Generating the narration in five separate sections
+      resulted in noticeable differences in the voice. The five
+      recordings were also too short for the video, leaving long
+      stretches without any narration. This meant recreating the
+      narration as one continuous recording. Getting that
+      narration to match the actions on screen was particularly
+      frustrating. I spent considerable time adjusting the timing
+      because the narration frequently described something before
+      or after it appeared on screen. Even getting the pop-up text
+      to display with the correct background color took several
+      attempts. What surprised me most was how little time AI
+      actually saved. Although ChatGPT could make changes
+      directly in InVideo, I still needed to recognize problems
+      and explain how to correct them. For educators without video
+      editing experience, I think this could be frustrating rather
+      than helpful. While AI-assisted video editing has educational
+      potential, my experience showed that it still requires
+      technical knowledge and can be difficult to use effectively
+      without paying for a subscription.
+    </p>
+
+    <button type="button"
+            class="reflection-done"
+            id="done-reflection">
+      Close Reflection
+    </button>
+
+  </div>
+</dialog>
+
+<script>
+  const reflectionDialog =
+    document.getElementById('reflection-dialog');
+
+  document.getElementById('open-reflection')
+    .addEventListener('click', function () {
+      reflectionDialog.showModal();
+    });
+
+  document.getElementById('close-reflection')
+    .addEventListener('click', function () {
+      reflectionDialog.close();
+    });
+
+  document.getElementById('done-reflection')
+    .addEventListener('click', function () {
+      reflectionDialog.close();
+    });
+
+  reflectionDialog.addEventListener('click', function (event) {
+    if (event.target === reflectionDialog) {
+      reflectionDialog.close();
+    }
+  });
+</script>
 
 </body>
 </html>

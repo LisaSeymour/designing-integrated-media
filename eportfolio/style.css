@@ -760,3 +760,148 @@ section {
     white-space: nowrap;
     gap: 6px;
 }
+
+/* ==========================================
+   PROJECT PREVIEW IMAGES
+   ========================================== */
+
+.project-preview-link {
+    display: block;
+    margin: 0 0 22px;
+    text-decoration: none;
+}
+
+.project-preview-image {
+    display: block;
+    width: 100%;
+    height: 190px;
+    object-fit: contain;
+    background-color: #F5F8F6;
+    border: 1px solid #DCE6DF;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+.project-preview-link:hover .project-preview-image {
+    border-color: #F5B719;
+    box-shadow: 0 0 0 2px #F5B719;
+}
+
+.project-preview-link:focus-visible {
+    outline: 3px solid #568DB8;
+    outline-offset: 4px;
+}
+
+/* ==========================================
+   REFLECTION BUTTON
+   ========================================== */
+
+.project-links button.project-button {
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    font-family: var(--body-font);
+    font-size: 0.88rem;
+    line-height: 1.7;
+}
+
+.project-links button.project-button:focus-visible {
+    outline: 3px solid var(--library-blue);
+    outline-offset: 3px;
+}
+
+/* ==========================================
+   AI-ASSISTED VIDEO REFLECTION POP-UP
+   ========================================== */
+
+.reflection-dialog {
+    width: min(90%, 760px);
+    max-height: 85vh;
+    padding: 0;
+    border: 3px solid var(--pbsc-green);
+    border-radius: 12px;
+    background-color: var(--white);
+    box-shadow: 0 12px 50px rgba(0, 0, 0, 0.25);
+    color: var(--text-dark);
+}
+
+.reflection-dialog::backdrop {
+    background-color: rgba(20, 40, 32, 0.65);
+}
+
+.reflection-content {
+    position: relative;
+    padding: 42px 45px;
+}
+
+.reflection-content h2 {
+    font-family: var(--serif-font);
+    color: var(--pbsc-green);
+    font-size: clamp(1.7rem, 3vw, 2.3rem);
+    margin-bottom: 20px;
+    padding-right: 30px;
+}
+
+.reflection-content .gold-rule {
+    margin-bottom: 28px;
+}
+
+.reflection-content p:not(.section-label) {
+    font-family: var(--body-font);
+    font-size: 1rem;
+    line-height: 1.85;
+    color: var(--text-dark);
+    margin-bottom: 22px;
+}
+
+.reflection-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    border: none;
+    background: transparent;
+    color: var(--pbsc-green);
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.reflection-close:hover {
+    color: #A66B00;
+}
+
+.reflection-done {
+    display: block;
+    margin: 30px auto 0;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    background-color: var(--pbsc-green);
+    color: var(--white);
+    font-family: var(--body-font);
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.reflection-done:hover {
+    background-color: var(--pbsc-gold);
+    color: var(--pbsc-green);
+}
+
+.reflection-close:focus-visible,
+.reflection-done:focus-visible {
+    outline: 3px solid var(--library-blue);
+    outline-offset: 4px;
+}
+
+@media (max-width: 600px) {
+    .reflection-dialog {
+        width: 94%;
+        max-height: 90vh;
+    }
+
+    .reflection-content {
+        padding: 32px 24px;
+    }
+}
