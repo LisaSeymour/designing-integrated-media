@@ -905,3 +905,191 @@ section {
         padding: 32px 24px;
     }
 }
+
+/* ==========================================
+   EXPANDED PROJECT DETAILS
+   ========================================== */
+
+.project-details-section {
+    background-color: #EAF0EB;
+    border-top: 1px solid var(--border-light);
+    padding: 75px 28px 90px;
+}
+
+.project-details-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.project-details-section .section-heading {
+    margin-bottom: 35px;
+}
+
+/* Individual expandable projects */
+
+.project-detail {
+    margin-bottom: 14px;
+    background-color: #FFFFFF;
+    border: 1px solid var(--border-light);
+    border-left: 4px solid var(--pbsc-green);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.project-detail summary {
+    padding: 20px 25px;
+    color: var(--pbsc-green);
+    font-family: var(--serif-font);
+    font-size: 1.3rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.project-detail summary:hover {
+    background-color: #FDF3D5;
+}
+
+.project-detail summary:focus-visible {
+    outline: 3px solid var(--library-blue);
+    outline-offset: -3px;
+}
+
+.project-detail[open] summary {
+    background-color: #F5F8F6;
+    border-bottom: 2px solid var(--pbsc-gold);
+}
+
+/* Expanded description content */
+
+.project-detail-content {
+    padding: 30px 35px 35px;
+}
+
+.project-detail-content p {
+    color: var(--text-dark);
+    font-family: var(--body-font);
+    font-size: 1rem;
+    line-height: 1.85;
+    margin-bottom: 22px;
+}
+
+.project-detail-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* Embedded YouTube videos */
+
+.project-video-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px;
+    margin-top: 35px;
+}
+
+.project-video h4 {
+    color: var(--pbsc-green);
+    font-family: var(--body-font);
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0 0 12px;
+}
+
+.video-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: #000000;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.video-frame iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Additional project links */
+
+.project-detail-link a {
+    display: inline-block;
+    padding: 11px 20px;
+    background-color: var(--pbsc-green);
+    color: #FFFFFF;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 700;
+}
+
+.project-detail-link a:hover {
+    background-color: var(--pbsc-gold);
+    color: var(--pbsc-green);
+}
+
+/* Mobile layout */
+
+@media (max-width: 700px) {
+    .project-details-section {
+        padding: 55px 20px 70px;
+    }
+
+    .project-detail summary {
+        padding: 17px 18px;
+        font-size: 1.1rem;
+    }
+
+    .project-detail-content {
+        padding: 25px 20px;
+    }
+
+    .project-video-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+}
+
+/* Read My Process & Reflection buttons */
+
+.explore-project {
+    display: block;
+    margin: 0 0 22px;
+    padding: 12px 16px;
+    background-color: #FDF3D5;
+    color: #2B6959;
+    border: 2px solid #F5B719;
+    border-radius: 6px;
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Lato', Arial, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    transition: background-color 0.2s ease;
+}
+
+.explore-project:hover {
+    background-color: #F5B719;
+}
+
+.explore-project:focus-visible {
+    outline: 3px solid #568DB8;
+    outline-offset: 3px;
+}
+
+.project-detail {
+    scroll-margin-top: 25px;
+}
+/* Center the single phototropism animation video */
+
+.project-detail-content .project-video-grid:has(> .project-video:only-child) {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+}
+/* Left-align text in expanded project reflections */
+
+.project-detail-content p {
+    text-align: left;
+}
