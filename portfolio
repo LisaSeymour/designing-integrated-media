@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ePortfolio Design | Lisa Seymour</title>
+
+<link href="style.css" rel="stylesheet" type="text/css" media="screen">
+</head>
+
+<body>
+<div id="wrapper">
+
+<!-- NAVIGATION -->
+
+<div id="menu-wrapper">
+  <div id="menu" class="container">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Me</a></li>
+      <li><a href="image.html">Image Editing</a></li>
+      <li><a href="web.html">Web Design</a></li>
+      <li><a href="video.html">Video Production</a></li>
+      <li><a href="animation.html">Animation</a></li>
+      <li><a href="screencast.html">Screencast</a></li>
+      <li><a href="contact.html">Contact Me</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- HEADER -->
+
+<div id="logo" class="container">
+
+  <img src="PBSC_LIBRARIES-LOGO.jpg"
+       alt="Palm Beach State College Libraries logo"
+       class="library-logo">
+
+  <h1>Lisa Seymour</h1>
+  <p>
+    EME 6208: Designing Integrated Media Environments |
+    University of Florida
+  </p>
+
+</div>
+
+<div id="page" class="container">
+  <div>
+    <div class="entry"></div>
+  </div>
+</div>
+
+<!-- EPORTFOLIO DESIGN PROJECT -->
+
+<div class="container">
+
+  <div class="web-project">
+
+    <h2>ePortfolio Design</h2>
+
+    <p>
+      For the ePortfolio design assignment, I created
+      two versions of my website. For the traditional
+      version, I modified an existing HTML and CSS
+      template using BBEdit. I customized the navigation,
+      typography, and colors to reflect my professional
+      identity as an academic librarian and the Palm
+      Beach State College Libraries branding.
+    </p>
+
+    <h3>Traditionally Created ePortfolio</h3>
+
+    <p>
+      This website is my traditionally created ePortfolio.
+      I adapted the provided template to include separate
+      pages for my projects, added the PBSC Libraries logo,
+      and incorporated PBSC's green-and-gold color scheme.
+      I edited the HTML and CSS in BBEdit and published
+      the website using GitHub Pages.
+    </p>
+
+    <h3>AI-Created ePortfolio</h3>
+
+    <p>
+      I also created an alternative ePortfolio using
+      ChatGPT to generate the initial HTML and CSS.
+      I wanted a more modern, single-page design while
+      retaining the same PBSC branding. I used BBEdit
+      to refine the generated code as I developed the
+      website. The finished version includes project
+      cards, links to my work, and expanded descriptions
+      of the projects.
+    </p>
+
+    <h3>AI-Created ePortfolio Preview</h3>
+
+    <div style="text-align:center; margin:25px 0;">
+
+      <a href="https://lisaseymour.github.io/designing-integrated-media/eportfolio/"
+         target="_blank"
+         rel="noopener noreferrer">
+
+        <img src="AI_portfolio.png"
+             alt="Screenshot of the AI-created ePortfolio"
+             style="display:block;
+                    width:100%;
+                    max-width:750px;
+                    height:auto;
+                    margin:0 auto;
+                    border:1px solid #DCE6DF;">
+
+      </a>
+
+    </div>
+
+    <p style="text-align:center;">
+      <a href="https://lisaseymour.github.io/designing-integrated-media/eportfolio/"
+         class="button"
+         target="_blank"
+         rel="noopener noreferrer">
+        View AI-Created ePortfolio
+      </a>
+    </p>
+
+  </div>
+
+</div>
+
+</div>
+
+<!-- FOOTER -->
+
+<div id="footer">
+
+  <p>
+    &copy; 2026 Lisa Seymour |
+    Palm Beach State College Libraries |
+    EME 6208: Designing Integrated Media Environments
+  </p>
+
+  <p>
+    <a href="https://education.ufl.edu/educational-technology/"
+       target="_blank"
+       rel="noopener noreferrer"
+       style="color:#FFFFFF; text-decoration:underline;">
+      University of Florida Educational Technology
+    </a>
+  </p>
+
+</div>
+
+</body>
+</html>
